@@ -1,0 +1,19 @@
+.footerheader{
+    color: rgb(117, 117, 117);
+    text-transform: uppercase;
+    margin-top: 3em;
+    font-size: 13px;
+    font-weight: bold;
+    text-align: left;
+}
+
+.footerelement{
+    margin: 0;
+    text-align: left;
+    text-decoration: underline;
+}
+
+.footerelement a{
+    text-decoration: none;
+    color: rgb(154, 154, 154);
+}

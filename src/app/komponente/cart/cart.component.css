@@ -1,0 +1,14 @@
+#dugme{
+    border-width: 0;
+    width: 6em;
+    border-radius: 0px; 
+    height: 3.5em; 
+    margin-top: -5px; 
+    font-size: 13pt;
+    font-weight: bold;
+    background-color: rgb(234, 234, 234);
+}
+
+#dugme:hover{
+    background-color: rgb(52, 58, 64);
+}

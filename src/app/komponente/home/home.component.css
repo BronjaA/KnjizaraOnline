@@ -1,0 +1,26 @@
+@media (min-width: 900px){
+    #hometext{
+        width: 900px;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 1350px){
+    #promtext{
+        display:none;
+    }
+}
+
+@media (min-width: 1350px){
+    #promtext2{
+        display:none;
+    }
+}
+
+#homenaslov{
+    font-size: 400%;
+}
+
+.slika{
+    width: 33%;
+}

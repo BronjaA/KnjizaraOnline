@@ -1,0 +1,50 @@
+<div class="fluid" style="background-color: rgb(249, 249, 249);">
+    <hr style="width: 100%; margin: 0;"/>
+    <div class="row mx-5" style="padding-top: 60px; padding-bottom: 80px;">
+        <!-- slika knjige -->
+        <div class="col-4 offset-1" style="display: flex; justify-content: center;">
+            <img src="{{knjige[pID].slika}}" alt="" style="height: 584px; width: 382px;">
+        </div>
+
+        <!-- podaci o knjizi -->
+        <div class="col-6">
+            <p class="text-secondary">Početna / Prodavnica / {{knjige[pID].kategorija}} / {{knjige[pID].ime}} </p>
+            <h2 style="font-weight: 400;">{{knjige[pID].ime}} - {{knjige[pID].autor}}</h2>
+            <h4 class="mt-3">{{knjige[pID].cena}}.00 RSD</h4>
+
+            <!-- dodatni podaci -->
+            <p class="mt-5">
+            <span style="font-weight: 600;">Izdavač: </span><span style="font-size: 17px;">{{knjige[pID].izdavac}}</span><br>
+            <span style="font-weight: 600;">Broj strana: </span><span style="font-size: 17px;">{{knjige[pID].brStrana}}</span><br>
+            <span style="font-weight: 600;">Pismo: </span><span style="font-size: 17px;">{{knjige[pID].pismo}}</span><br>
+            <span style="font-weight: 600;">Povez: </span><span style="font-size: 17px;">{{knjige[pID].povez}}</span><br>
+            <span style="font-weight: 600;">Format: </span><span style="font-size: 17px;">{{knjige[pID].format}} cm</span><br>
+            <span style="font-weight: 600;">Godina izdanja: </span><span style="font-size: 17px;">{{knjige[pID].gIzdanja}}</span><br>
+            </p>
+            <!-- button kupi knjigu -->
+            <div class="row justify-content-">
+                <div class="col-1 align-self-end">
+                    <input type="number" placeholder="kolicina" id="quantity" value=1 style="width: 50px; height: 45px; font-size: 15pt; padding-left: 10px;">
+                </div>
+                <div class="col">
+                    <button id="dugme" class="btn btn-secondary mt-4 btn-lg" style="border-radius: 0;" (click)="inCart(knjige[pID])">Dodaj u korpu</button>
+                </div>
+            </div>
+            
+
+            <!-- ostalo -->
+            <hr>
+            <p>Kategorija: <span>{{knjige[pID].kategorija}}</span></p>
+            
+        </div>
+    </div>
+    <div class="row mx-5">
+        <div class="col-10 offset-1">
+            <hr>
+        </div>
+        <div class="col-10 offset-1">
+            <h5 >Opis</h5>
+            <p class="my-5">{{knjige[pID].opis}}</p>
+        </div>
+    </div>
+</div>

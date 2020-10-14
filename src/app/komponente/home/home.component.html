@@ -1,0 +1,468 @@
+<!-- Pocetni text i polje za pretragu -->
+<div
+  class="container-fluid"
+  style="
+    background-color: rgba(0, 29, 53, 0.479);
+    background-position: center center;
+  "
+>
+  <div style="height: calc(100vh - 90px);">
+    <div class="row">
+      <div class="col-lg-6 col-md-6 col-sm-12"></div>
+      <div class="col-lg-6 col-md-6 col-sm-12 p-2">
+        <h1
+          class="d-none d-md-block"
+          style="color: white; padding-top: 100px;"
+          id="homenaslov"
+        >
+          Kupite knjigu, brzo i jednostavno
+        </h1>
+        <h1
+          class="d-md-none text-center"
+          style="color: white; padding-top: 100px;"
+        >
+          Kupite knjigu, brzo i jednostavno
+        </h1>
+        <h3 class="d-none d-md-block" style="color: white;">
+          Do 25% popusta na određene knjige!
+        </h3>
+        <h5
+          class="d-md-none text-center"
+          style="color: white; padding-top: 40px;"
+        >
+          Do 25% popusta na određene knjige!
+        </h5>
+
+        <!-- Button za desktop view -->
+        <div class="d-none d-md-block" style="padding-top: 50px; display: flex;">
+          <button
+            class="btn btn-outline-light btn-lg btn-light"
+            style="border-radius: 0px; color: black;"
+            [routerLink]="['/pl']" [queryParams]="{ kategorija: 'Klasici' }" queryParamsHandling="merge"
+          >
+            Kupi sada
+          </button>
+          <button
+            class="btn btn-outline-light btn-lg"
+            style="border-radius: 0px; margin-left: 40px;"
+          >
+            Saznaj više
+          </button>
+        </div>
+
+        <!-- Button za tablet view -->
+        <div class="d-md-none" style="padding-top: 50px; display: flex; justify-content: center;">
+          <button
+            class="btn btn-outline-light btn-lg btn-light"
+            style="border-radius: 0px; color: black;"
+          >
+            Kupi sada
+          </button>
+          <button
+            class="btn btn-outline-light btn-lg"
+            style="border-radius: 0px; margin-left: 40px;"
+          >
+            Saznaj više
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Slajder sa slikama kao akcija, premijera i najprodavanijih knjiga etc.. -->
+<div
+  class="container-fluid"
+  style="background-color: white; height: 50px;"
+></div>
+<div class="container-fluid">
+  <div class="row justify-content-center" style="background-color: white;">
+    <div class="col" style="max-height: 500px; width: 80%; margin: auto;">
+
+      <!-- karusel -->
+      <div id="slides" class="carousel slide" data-ride="carousel" style="margin: 0 auto;">
+        <ul class="carousel-indicators">
+          <li data-target="#slides" data-slide-to="0" class="active"></li>
+          <li data-target="#slides" data-slide-to="1"></li>
+          <li data-target="#slides" data-slide-to="2"></li>
+        </ul>
+        <div class="carousel-inner">
+          <div class="carousel-item active" style="max-height: 400px;">
+            <div class="row">
+              <div class="col">
+                <img
+                src="../../../assets/img/carousel/knjiga1.jpg"
+                alt=""
+                class=""
+                style="width: 100%; margin: auto; object-fit: cover;"
+                />
+              </div>
+              <div class="col">
+                <img
+                src="../../../assets/img/carousel/knjiga2.jpg"
+                alt=""
+                class=""
+                style="width: 100%; margin: auto; object-fit: cover;"
+              />
+              </div>
+              <div class="col">
+                <img
+                src="../../../assets/img/carousel/knjiga3.jpg"
+                alt=""
+                class=""
+                style="width: 100%; margin: auto; object-fit: cover;"
+              />
+              </div>
+            </div>
+            
+          </div>
+          <div class="carousel-item" style="max-height: 400px;">
+            <div class="row">
+              <div class="col">
+                <img
+                src="../../../assets/img/carousel/knjiga1.jpg"
+                alt=""
+                class=""
+                style="width: 100%; margin: auto; object-fit: cover;"
+                />
+              </div>
+              <div class="col">
+                <img
+                src="../../../assets/img/carousel/knjiga2.jpg"
+                alt=""
+                class=""
+                style="width: 100%; margin: auto; object-fit: cover;"
+              />
+              </div>
+              <div class="col">
+                <img
+                src="../../../assets/img/carousel/knjiga3.jpg"
+                alt=""
+                class=""
+                style="width: 100%; margin: auto; object-fit: cover;"
+              />
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item" style="max-height: 400px;">
+            <div class="row">
+              <div class="col">
+                <img
+                src="../../../assets/img/carousel/knjiga1.jpg"
+                alt=""
+                class=""
+                style="width: 100%; margin: auto; object-fit: cover;"
+                />
+              </div>
+              <div class="col">
+                <img
+                src="../../../assets/img/carousel/knjiga2.jpg"
+                alt=""
+                class=""
+                style="width: 100%; margin: auto; object-fit: cover;"
+              />
+              </div>
+              <div class="col">
+                <img
+                src="../../../assets/img/carousel/knjiga3.jpg"
+                alt=""
+                class=""
+                style="width: 100%; margin: auto; object-fit: cover;"
+              />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <a class="carousel-control-prev" href="#slides" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#slides" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- Odabir kategorija u obliku onih cards -->
+<div class="container-fluid" style="background-color: white;">
+  <div class="container" style="background-color: white;">
+    <div class="row-fluid">
+      <div class="col">
+        <h3 class="text-center font-weight-light" style="padding-top: 80px;">
+          - Najpopularnije kategorije -
+        </h3>
+      </div>
+    </div>
+
+    <div class="row mt-5 pb-5 justify-content-center">
+      <div class="mb-4 col-lg-3 col-md-6 col-sm-12">
+        <div
+          style="
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+              url(../../../../../assets/img/categories/koKlasici.jpg);
+            background-size: cover;
+            height: 100%;
+            display: flex;
+            flex-direction: column-reverse;
+          "
+        >
+          <h1 class="mx-4 text-light" style="padding-top: 100px; order: 2;">
+            Klasici
+          </h1>
+          <h6 class="mb-5 mt-4 mx-4 text-light" style="order: 1;">
+            Svaka knjiga koja je toliko značajna da se o njoj pišu druge knjige
+            mora da se poseduje!
+          </h6>
+          <button
+            class="mx-4 mb-5 btn btn-light btn-lg"
+            style="border-radius: 0px; height: 50px; width: 100px;"
+            [routerLink]="['/pl']" [queryParams]="{ kategorija: 'Klasici' }" queryParamsHandling="merge"
+          >
+            Pretraži
+          </button>
+        </div>
+      </div>
+
+      <div class="mb-4 col-lg-3 col-md-6 col-sm-12">
+        <div
+          style="
+            background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+              url(../../../../../assets/img/categories/koPoezija.jpg);
+            background-size: cover;
+            height: 100%;
+            display: flex;
+            flex-direction: column-reverse;
+          "
+        >
+          <h1 class="mx-4 text-light" style="padding-top: 100px; order: 2;">
+            Poezija
+          </h1>
+          <h6 class="mb-5 mt-4 mx-4 text-light" style="order: 1;">
+            Prihavtite ukrasni izbor reči i divite se raznovrsnosti jezika.
+          </h6>
+          <button
+            class="mx-4 mb-5 btn btn-light btn-lg"
+            style="border-radius: 0px; height: 50px; width: 100px;"
+            [routerLink]="['/pl']" [queryParams]="{ kategorija: 'Poezija' }" queryParamsHandling="merge"
+          >
+            Pretraži
+          </button>
+        </div>
+      </div>
+
+      <div class="mb-4 col-lg-3 col-md-6 col-sm-12">
+        <div
+          style="
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+              url(../../../../../assets/img/categories/koLektire.jpg);
+            background-size: cover;
+            height: 100%;
+            display: flex;
+            flex-direction: column-reverse;
+          "
+        >
+          <h1 class="mx-4 text-light" style="order: 2; padding-top: 100px;">
+            Lektire
+          </h1>
+          <h6 class="mb-5 mt-4 mx-4 text-light" style="order: 1;">
+            Lektire za đake svih uzrasta.
+          </h6>
+          <button
+            class="mx-4 mb-5 btn btn-light btn-lg"
+            style="border-radius: 0px; height: 50px; width: 100px;"
+            [routerLink]="['/pl']" [queryParams]="{ kategorija: 'Lektire' }" queryParamsHandling="merge"
+          >
+            Pretraži
+          </button>
+        </div>
+      </div>
+
+      <div class="mb-4 col-lg-3 col-md-6 col-sm-12">
+        <div
+          style="
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+              url(../../../../../assets/img/categories/koStraneKnjige.jpg);
+            background-size: cover;
+            height: 100%;
+            display: flex;
+            flex-direction: column-reverse;
+          "
+        >
+          <h1 class="mx-4 text-light" style="padding-top: 100px; order: 2;">
+            Strane knjige
+          </h1>
+          <h6 class="mb-5 mt-4 mx-4 text-light" style="order: 1;">
+            Zašto se ograničavati na domaće pisce?
+          </h6>
+          <button
+            class="mx-4 mb-5 btn btn-light btn-lg"
+            style="border-radius: 0px; height: 50px; width: 100px;"
+            [routerLink]="['/pl']" [queryParams]="{ kategorija: 'Strane knjige' }" queryParamsHandling="merge"
+          >
+            Pretraži
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Izdvajamo panel -->
+<div class="container-fluid" style="background-color: rgb(244, 244, 244);">
+  <div class="container-fluid">
+    <div class="row-fluid">
+      <div class="col">
+        <h1 class="text-center" style="padding-top: 150px;">Izdvajamo</h1>
+        <hr
+          style="
+            width: 7em;
+            border-width: 2px;
+            border-color: black;
+            margin-bottom: 90px;
+          "
+        />
+      </div>
+    </div>
+  
+    <div class="row" >
+      <div class="mb-4 col-5 col-lg-2 col-md-4 col-sm-5 offset-sm-1 offset-md-0 offset-lg-1 offset-1">
+        <a [routerLink]="['/product', 4]" onClick="window.scrollTo(0, 0)">
+        <div style="background-image:url(../../../../../assets/img/knjige/pabloneruda.png); background-position: center; padding-bottom: 100%; background-size: contain;">
+        </div>
+        <p class="mt-2" style="color:black; font-size: 14px; font-weight: 500; margin-bottom: 10px;">Sto Ljubavnih Soneta - Pablo Neruda</p></a>
+        <p style="color: gray; font-size: 12px; margin: 0px;">Klasici</p>
+        <p style="font-size: 14px; font-weight: 500;">890.00 RSD</p>
+      </div>
+      <div class="mb-4 col-5 col-lg-2 col-md-4 col-sm-5">
+        <a [routerLink]="['/product', 2]" onClick="window.scrollTo(0, 0)">
+        <div style="background-image:url(../../../../../assets/img/knjige/tomSojer.png); background-position: center; padding-bottom: 100%; background-size: contain;">
+        </div>
+        <p class="mt-2" style="color: black; font-size: 14px; font-weight: 500; margin-bottom: 10px;">Doživljaji Toma Sojera - Mark Tven</p></a>
+        <p style="color: gray; font-size: 12px; margin: 0px;">Lektire</p>
+        <p style="font-size: 14px; font-weight: 500;">510.00 RSD</p>
+      </div>
+      <div class="mb-4 col-5 col-lg-2 col-md-4 col-sm-5 offset-sm-1 offset-md-0 offset-1">
+        <a [routerLink]="['/product', 3]" onClick="window.scrollTo(0, 0)">
+        <div style="background-image:url(../../../../../assets/img/knjige/orlovi.png); background-position: center; padding-bottom: 100%; background-size: contain;">
+        </div>
+        <p class="mt-2" style="color: black; font-size: 14px; font-weight: 500; margin-bottom: 10px;">Orlovi Rano Lete - Branko Ćopić</p></a>
+        <p style="color: gray; font-size: 12px; margin: 0px;">Lektire</p>
+        <p style="font-size: 14px; font-weight: 500;">510.00 RSD</p>
+      </div>
+      <div class="mb-4 col-5 col-lg-2 col-md-4 col-sm-5">
+        <a [routerLink]="['/product', 1]" onClick="window.scrollTo(0, 0)">
+        <div style="background-image:url(../../../../../assets/img/knjige/ana.png); background-position: center; padding-bottom: 100%; background-size: contain;">
+        </div>
+        <p class="mt-2" style=" color: black; font-size: 14px; font-weight: 500; margin-bottom: 10px;">Ana Karenjina - Lav Nikolajevič Tolstoj</p></a>
+        <p style="color: gray; font-size: 12px; margin: 0px;">Klasici</p>
+        <p style="font-size: 14px; font-weight: 500;">869.00 RSD</p>
+      </div>
+      <div class="mb-4 col-5 col-lg-2 col-md-4 col-sm-5 offset-sm-1 offset-md-0 offset-1">
+        <a [routerLink]="['/product', 5]" onClick="window.scrollTo(0, 0)">
+        <div style="background-image:url(../../../../../assets/img/knjige/stranac.png); background-position: center; padding-bottom: 100%; background-size: contain;">
+        </div>
+        <p class="mt-2" style="color: black; font-size: 14px; font-weight: 500; margin-bottom: 10px;">Stranac - Alber Kami</p></a>
+        <p style="color: gray; font-size: 12px; margin: 0px;">Klasici</p>
+        <p style="font-size: 14px; font-weight: 500;">275.00 RSD</p>
+      </div>
+    </div>
+  
+</div>
+
+  <!-- Akcijeske ponude panel -->
+
+  <div class="container-fluid" style="padding-top: 100px;">
+    <div
+      class="mx-lg-5"
+      style="
+        background: linear-gradient(
+            rgba(17, 107, 191, 0.33),
+            rgba(17, 107, 191, 0.33)
+          ),
+          url(../../../assets/img/zena.jpg);
+        resize: both;
+        max-width: 100%;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+      "
+    >
+      <div>
+        <div class="p-lg-5 p-md-4 p-sm-4 p-4">
+          <h5 class="text-white">Vremenski ograničene ponude</h5>
+          <h1 class="pt-4 text-white">Specijalne akcije</h1>
+          <p class="text-white pt-4">
+            Vaša online prodavnica redovno nudi akcije kako bi željenu knjigu
+            dobili i po željenoj ceni.
+          </p>
+          <h6 class="text-white pt-5">Do 25% popusta na određene knjige!</h6>
+          <button
+            class="btn btn-light btn-lg my-lg-5"
+            style="border-radius: 0px;"
+            [routerLink]="['/pl']"
+          >
+            Pretraži
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- One info: dostava, kvalitet i taj bs -->
+  <div class="container" style="padding-bottom: 120px;">
+    <div class="row justify-content-center" style="padding-top: 100px;">
+      <div class="mb-5 col-lg-3 col-md-6 col-sm-12">
+        <img
+          class="mx-auto"
+          src="../../../assets/ico/globe-free-img.png"
+          alt=""
+          style="height: 4em; width: 4em; display: block; margin: auto;"
+        />
+        <h4 class="text-center mt-4">Dostava širom srbije</h4>
+        <p class="text-center mt-4">
+          Vršimo dostavu vaših kupljenih knjiga na teritoriji cele Srbije!
+        </p>
+      </div>
+      <div class="mb-5 col-lg-3 col-md-6 col-sm-12">
+        <img
+          src="../../../assets/ico/quality-free-img.png"
+          alt=""
+          style="height: 4em; display: block; margin: auto;"
+        />
+        <h4 class="text-center mt-4">Najbolji kvalitet</h4>
+        <p class="text-center mt-4">
+          Za sve knjige iz našeg asortimana garantujemo vrhunskim kvalitetom.
+        </p>
+      </div>
+      <div class="mb-5 col-lg-3 col-md-6 col-sm-12">
+        <img
+          src="../../../assets/ico/tag-free-img.png"
+          alt=""
+          style="height: 4em; display: block; margin: auto;"
+        />
+        <h4 class="text-center mt-4">Najbolje ponude</h4>
+        <p class="text-center mt-4">
+          Redovne akcije i popusti osiguravaju da željenu knjigu dobijete i po
+          željenoj ceni!
+        </p>
+      </div>
+      <div class="mb-5 col-lg-3 col-md-6 col-sm-12">
+        <img
+          src="../../../assets/ico/lock-free-img.png"
+          alt=""
+          style="height: 4em; display: block; margin: auto;"
+        />
+        <h4 class="text-center mt-4">Sigurna kupovina</h4>
+        <p class="text-center mt-4">
+          Naša online prodavnica koristi sigurne protokole za brzu i bezbednu
+          kupovinu.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

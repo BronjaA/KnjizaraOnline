@@ -1,0 +1,146 @@
+<div class="fluid" style="background-color: rgb(249, 249, 249);">
+    <hr class="w-100 m-0">
+    <h1 class="text-center display-4 mt-5 mb-5" style="font-weight: 500; color: rgb(84, 89, 95);">Prodaj knjigu</h1>
+
+    <!-- row gde se nalaze podaci o kupcu levo i desno podaci kupovine i dugme za potvrdu kupovine -->
+    <div class="container-fluid">
+
+    <!-- pocinje forma -->
+    <form autocomplete="off" [formGroup]="angForm" (ngSubmit)="posaljiPonudu(angForm)">
+    <div class="row pt-5">
+        <div class="col-6 offset-1 pr-5">
+            <!-- header -->
+            <h5 class="ml-5 mt-5">Podaci knjige za prodaju</h5>
+            <hr class="ml-5">
+
+            <!-- forma -->
+                <div class="row ml-5">
+                    <div class="col">
+                        <label class="lbl font-weight-bold">Naziv knjige</label>
+                        <input class="fp" type="text" style="width: 100%;" name="naziv" formControlName="naziv" autocomplete="off">
+                    </div>
+                    <div class="col">
+                        <label class="lbl font-weight-bold">Autor</label>
+                        <input class="fp" type="text" style="width: 100%;" name="autor" formControlName="autor" autocomplete="off">
+                    </div>
+                </div>
+                <div class="row ml-5">
+                    <div class="col">
+                        <label class="lbl font-weight-bold">Izdavač</label>
+                        <input class="fp" type="text" style="width: 100%;" name="izdavac" formControlName="izdavac" autocomplete="off">
+                    </div>
+                    <div class="col">
+                        <label class="lbl font-weight-bold">Broj strana</label>
+                        <input class="fp" type="text" style="width: 100%;" name="brStrana" formControlName="brStrana" autocomplete="off">
+                    </div>
+                    <div class="col">
+                        <label class="lbl font-weight-bold">Pismo</label>
+                        <input class="fp" type="text" style="width: 100%;" name="pismo" formControlName="pismo" autocomplete="off">
+                    </div>
+                </div>
+                <div class="row ml-5">
+                    <div class="col">
+                        <label class="lbl font-weight-bold">Povez</label>
+                        <input class="fp" type="text" style="width: 100%;" name="povez" formControlName="povez" autocomplete="off">
+                    </div>
+                    <div class="col">
+                        <label class="lbl font-weight-bold">Format</label>
+                        <input class="fp" type="text" style="width: 100%;" name="format" formControlName="format" autocomplete="off">
+                    </div>
+                    <div class="col">
+                        <label class="lbl font-weight-bold">Godina izdanja</label>
+                        <input class="fp" type="text" style="width: 100%;" name="gIzdanja" formControlName="gIzdanja" autocomplete="off">
+                    </div>
+                </div>
+                <div class="row ml-5">
+                    <div class="col">
+                        <label class="lbl font-weight-bold">Napomena <span class="text-secondary">(neobavezno)</span></label>
+                        <textarea class="mb-2" type="text" style="width: 100%; box-shadow: none; border: 1px solid rgb(218, 218, 218);" cols="30" rows="5" name="napomena" formControlName="napomena" autocomplete="off"></textarea>
+                    </div>
+                </div>
+                <div class="row ml-5">
+                    <div class="col">
+                        <label class="lbl font-weight-bold">Stanje knjige na skali od 1-10</label>
+                        <input class="fp" type="text" style="width: 100%;" name="stanje" formControlName="stanje" autocomplete="off">
+                    </div>
+                    <div class="col">
+                        <label class="lbl font-weight-bold">Ponuđena cena</label>
+                        <input class="fp" type="text" style="width: 100%;" name="cena" formControlName="cena" autocomplete="off">
+                    </div>
+                </div>
+
+        </div>
+        <!-- panel sa detaljima porudzbine kao i dugme za potvrdu -->
+        <div class="col-4">
+            <div class="mb-5" style="border: 2px solid rgb(230, 230, 230); height: fit-content;">
+                
+                
+                <div class="row mx-3">
+                    <div class="col-12 text-secondary">
+                        <h5 class="mt-4 ml-4 mb-3">Mi otkupljujemo vaše knjige</h5>
+                    </div>
+                    <div class="col-12 text-secondary mb-4">
+                        Naša knjižara vrši otkup polovnih, starih i antikvarnih knjiga. Ukoliko imate višak knjiga i želite da prodate knjige koje vam više ne trebaju, jednostavno nam pošaljite ponudu, a mi ćemo vam u najkraćem mogućem roku odgovoriti kako bi došli do zajedničkog dogovora.
+                    </div>
+                    <div class="col-12 text-secondary">
+                        <h5 class="mt-4 ml-4 mb-3">Šta radimo sa otkupljenim knjigama?</h5>
+                    </div>
+                    <div class="col-12 text-secondary mb-5">
+                        U zavisnosti od stanja knjige, knjiga će ili biti izložena za ponovnu prodaju ili ako je stanje nije zadovoljavajuće, knjiga će biti reciklirana kako bi obezbedila materijal za štampanje novih knjiga!
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- pocinje forma -->
+    <div class="row pt-5">
+        <div class="col-6 offset-1 pr-5">
+            <!-- header -->
+            <h5 class="ml-5 mt-5">Kontakt podaci</h5>
+            <hr class="ml-5">
+
+            <!-- forma -->
+                <div class="row ml-5">
+                    <div class="col">
+                        <label class="lbl font-weight-bold">Ime i prezime</label>
+                        <input class="fp" type="text" style="width: 100%;" name="ime" formControlName="ime" autocomplete="off">
+                    </div>
+                </div>
+                <div class="row ml-5">
+                    <div class="col">
+                        <label class="lbl font-weight-bold">Ulica i broj</label>
+                        <input class="fp" type="text" style="width: 100%;" name="ulica" formControlName="ulica" autocomplete="off">
+                    </div>
+                </div>
+                <div class="row ml-5">
+                    <div class="col">
+                        <label class="lbl font-weight-bold">Poštanski broj</label>
+                        <input class="fp" type="text" style="width: 100%;" name="zip" formControlName="zip" autocomplete="off">
+                    </div>
+                    <div class="col">
+                        <label class="lbl font-weight-bold">Grad</label>
+                        <input class="fp" type="text" style="width: 100%;" name="grad" formControlName="grad" autocomplete="off">
+                    </div>
+                </div>
+                <div class="row ml-5">
+                    <div class="col">
+                        <label class="lbl font-weight-bold">Kontakt telefon</label>
+                        <input class="fp" type="text" style="width: 100%;" name="tel" formControlName="tel" autocomplete="off">
+                    </div>
+                    <div class="col">
+                        <label class="lbl font-weight-bold">E-Mail</label>
+                        <input class="fp" type="text" style="width: 100%;" name="email" formControlName="email" autocomplete="off">
+                    </div>
+                </div>
+                <div class="row ml-4">
+                    <div *ngIf="userID != null" class="col-6 d-flex justify-content-center offset-6">
+                        <button id="dugme" class="btn btn-outline-dark mt-4 mb-5" type="submit" style="width: 100%;" [disabled]="!angForm.valid">Pošalji ponudu</button>
+                    </div>
+                    <div *ngIf="userID == null" class="col-6 d-flex justify-content-center offset-6">
+                        <div id="dugme" class="btn btn-outline-dark mt-4 mb-5" style="width: 100%;">Niste prijavljeni, molimo Vas prijavite se!</div>
+                    </div>
+                </div>
+        </div>
+    </div>
+    </form>
+</div>

@@ -1,0 +1,520 @@
+<div class="overflow-hidden">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="height: 40px;">
+        <a class="navbar-brand" href="javascript:void(0)">KnjizaraOnline</a>
+    </nav>
+    <div>
+        <div class="row">
+            <div class="col-2" style="background-color: white;">
+                <!-- Sidebar -->
+                <div class="bg-dark" id="sidebar-wrapper" style="background-color: rgb(52, 58, 64); height: 100%">
+                    <div class="list-group list-group-flush">
+                    <a href="javascript:void(0)" (click)="navigate(0)" class="list-group-item list-group-item-action bg-dark sl">Knjige</a>
+                    <a href="javascript:void(0)" (click)="navigate(1); getAllOrders()" class="list-group-item list-group-item-action bg-dark sl">Porudzbine</a>
+                    <a href="javascript:void(0)" (click)="navigate(2)" class="list-group-item list-group-item-action bg-dark sl">Ponude</a>
+                    <a href="javascript:void(0)" routerLink="" class="list-group-item list-group-item-action bg-dark sl">Exit</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- kontent -->
+            <div class="col-10 fluid" style="background-color: white; min-height: calc(100vh - 40px);">
+
+<!-- ############ PANEL 0 - UPRAVLJANJE KNJIGAMA ############## -->
+            <div *ngIf="nav == 0">
+
+                <!-- dodaj novu knjigu -->
+                <h2 class="mt-5 mr-5">Upravljanje knjigama</h2>
+                    <hr>
+                <div class="accordion mb-5 mr-5" id="accordionEx" role="tablist" aria-multiselectable="true">
+                    <div class="card" style="border-radius: 0; border: 1.5px solid lightgray;">
+                
+                        <!-- Card header -->
+                        <div class="card-header" role="tab" id="headingOne1">
+                            <a id="dk" data-toggle="collapse" data-parent="#accordionEx" href="#collapseOne1" aria-expanded="true"
+                            aria-controls="collapseOne1">
+                            <h5 class="mb-0">
+                                + Dodaj knjigu <i class="fas fa-angle-down rotate-icon"></i>
+                            </h5>
+                            </a>
+                        </div>
+                    
+                        <!-- Card body -->
+                        <div id="collapseOne1" class="collapse" role="tabpanel" aria-labelledby="headingOne1"
+                            data-parent="#accordionEx">
+                            <div class="card-body">
+                                <form [formGroup]="angForm" (ngSubmit)="postdata(angForm)" autocomplete="off" id="dodajKnjigu">
+                                    <!-- naziv i autor -->
+                                    <div class="row">
+                                        <div class="col">
+                                            <label class="lbl font-weight-bold">Naziv knjige</label>
+                                            <input class="fp" type="text" style="width: 100%;" name="ime" formControlName="ime" autocomplete="off">     
+                                        </div>
+                                        <div class="col">
+                                            <label class="lbl font-weight-bold">Autor</label>
+                                            <input class="fp" type="text" style="width: 100%;" name="autor" formControlName="autor" autocomplete="off">
+                                        </div>
+                                    </div>
+
+                                    <!-- opis -->
+                                    <div>
+                                        <label class="lbl font-weight-bold">Opis knjige</label>
+                                        <textarea class="mb-2" type="text" style="width: 100%; box-shadow: none; border: 1px solid rgb(218, 218, 218);" cols="30" rows="10" name="opis" formControlName="opis" autocomplete="off"></textarea>
+                                    </div>
+
+                                    <!-- cena i kategorija -->
+                                    <div class="row">
+                                        <div class="col-3">
+                                            <label class="lbl font-weight-bold">Cena knjige</label>
+                                            <input class="fp" type="text" style="width: 80%; display: inline;" name="cena" formControlName="cena" autocomplete="off">
+                                            <span class="font-weight-bold"> RSD</span>
+                                        </div>
+                                        <div class="col-3">
+                                            <label class="lbl font-weight-bold">Kategorija</label>
+
+                                            <select class="fp" style="width: 100%;" form="dodajKnjigu" name="kategorija" formControlName="kategorija">
+                                                <option value="Klasici">Klasici</option>
+                                                <option value="Poezija">Poezija</option>
+                                                <option value="Drama">Drama</option>
+                                                <option value="Lektire">Lektire</option>
+                                                <option value="Strane knjige">Strane knjige</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-3">
+                                            <label class="lbl font-weight-bold">Slika</label>
+                                            <label *ngIf="imeSlike == null" class="btn btn-secondary fp" style="width: 100%;">
+                                                Dodaj sliku
+                                                <input
+                                                    type="file"
+                                                    style="display: none"
+                                                    accept="image/*"
+                                                    (change)="onFileChanged($event)"
+                                                />
+                                            </label>
+                    
+                                            <label *ngIf="imeSlike != null" class="btn btn-secondary fp" style="width: 100%;  background-color: #27cf3e;">
+                                                {{imeSlike}}
+                                                <input
+                                                    type="file"
+                                                    style="display: none"
+                                                    (change)="onFileChanged($event)"
+                                                />
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    <!-- sve ostalo -->
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-2">
+                                            <label class="lbl font-weight-bold">Izdavac</label>
+                                            <input class="fp" type="text" style="width: 100%;" name="izdavac" formControlName="izdavac" autocomplete="off">
+                                        </div>
+                                        <div class="col-2">
+                                            <label class="lbl font-weight-bold">Broj Strana</label>
+                                            <input class="fp" type="text" style="width: 100%;" name="brStrana" formControlName="brStrana" autocomplete="off">
+                                        </div>
+                                        <div class="col-2">
+                                            <label class="lbl font-weight-bold">Pismo</label>
+                                            <input class="fp" type="text" style="width: 100%;" name="pismo" formControlName="pismo" autocomplete="off">
+                                        </div>
+                                        <div class="col-2">
+                                            <label class="lbl font-weight-bold">Povez</label>
+                                            <input class="fp" type="text" style="width: 100%;" name="povez" formControlName="povez" autocomplete="off">
+                                        </div>
+                                        <div class="col-2">
+                                            <label class="lbl font-weight-bold">Format</label>
+                                            <input class="fp" type="text" style="width: 100%;" name="format" formControlName="format" autocomplete="off">
+                                        </div>
+                                        <div class="col-2">
+                                            <label class="lbl font-weight-bold">Godina izdanja</label>
+                                            <input class="fp" type="text" style="width: 100%;" name="gIzdanja" formControlName="gIzdanja" autocomplete="off">
+                                        </div>
+                                    </div>
+                                    <!-- submit btn -->
+                                    <button class="btn btn-primary" type="submit" [disabled]="!angForm.valid">Dodaj knjigu</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Lista svih knjiga -->
+                <div class="my-5 mr-5">
+                    <div class="card" style="border-radius: 0px;">
+                        <div class="card-header">
+                            <div class="row">
+                                <div class="col-1">
+                                </div>
+                                <div class="col-4">
+                                    <p style="font-weight: 500;" class="m-0">Proizvod</p>
+                                </div>
+                                <div class="col-2">
+                                    <p style="font-weight: 500;" class="m-0">Cena</p>
+                                </div>
+                                <div class="col-3">
+                                    <p style="font-weight: 500;" class="m-0">Kategorija</p>
+                                </div>
+                                <div class="col-2">
+                                    <p style="font-weight: 500;" class="m-0">Akcije</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- body -->
+                        <div class="card-body py-0">
+                            <div *ngFor="let knjiga of knjige; index as productID" class="row">
+                                <div class="col-1 border-right border-bottom py-3">
+                                    <img src="{{knjiga.slika}}" alt="" style="width: 40px; height: 40px;">
+                                </div>
+                                <div class="col-4 border-right border-bottom py-3">
+                                    <p class="m-0">{{knjiga.ime}} - {{knjiga.autor}}</p>
+                                </div>
+                                <div class="col-2 border-right border-bottom py-3">
+                                    <p class="m-0">{{knjiga.cena}}.00 RSD</p>
+                                </div>
+                                <div class="col-3 border-right border-bottom py-3">
+                                    <span style="font-weight: 500;">{{knjiga.kategorija}}</span>
+                                </div>
+                                <div class="col-2 py-3 border-bottom">
+                                    <a href="javascript:void(0)" (click)="details(productID)" onClick="window.scrollTo(0, 0)">Detalji</a>
+                                    <a *ngIf="hide != productID" href="javascript:void(0)" class="ml-4" (click)="warning(productID)">Ukloni</a>
+                                    <a *ngIf="permission == productID" href="javascript:void(0)" class="ml-4" (click)="delete(productID)" style="color: red;">Potvrdi</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+                
+<!-- ############ PANEL 1 - UPRAVLJANJE PORUDZBINAMA ############## -->
+                <div *ngIf="nav == 1">
+
+                    <!-- Lista svih porudzbina -->
+                    <div class="my-5 mr-5">
+                        <h2 class="mb-3">Upravljanje porudzbinama</h2>
+                        <hr>
+                        <div class="card" style="border-radius: 0px;">
+                            <div class="card-header">
+                                <div class="row">
+                                    <div class="col-1">
+                                        <p style="font-weight: 500;" class="m-0">ID</p>
+                                    </div>
+                                    <div class="col-3">
+                                        <p style="font-weight: 500;" class="m-0">Ime i prezime kupca</p>
+                                    </div>
+                                    <div class="col-2">
+                                        <p style="font-weight: 500;" class="m-0">Datum</p>
+                                    </div>
+                                    <div class="col-2">
+                                        <p style="font-weight: 500;" class="m-0">Status</p>
+                                    </div>
+                                    <div class="col-2">
+                                        <p style="font-weight: 500;" class="m-0">Ukupan iznos</p>
+                                    </div>
+                                    <div class="col-2">
+                                        <p style="font-weight: 500;" class="m-0">Akcije</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- body -->
+                            <div class="card-body py-0">
+                                <div *ngFor="let porudzbina of order; index as id">
+                                <div class="row">
+                                    <div class="col-1 border-right py-3">
+                                        <p class="m-0 text-center">#{{porudzbina.id}}</p>
+                                    </div>
+                                    <div class="col-3 border-right py-3">
+                                        <p class="m-0">{{porudzbina.ime}} {{porudzbina.prezime}}</p>
+                                    </div>
+                                    <div class="col-2 border-right py-3">
+                                        <p class="m-0">{{porudzbina.datum}}</p>
+                                    </div>
+                                    <div class="col-2 border-right py-3">
+                                        <p class="m-0">{{porudzbina.status}}</p>
+                                    </div>
+                                    <div class="col-2 border-right py-3">
+                                        <span style="font-weight: 500;">{{orderSum[id] + 270}}.00 RSD</span>
+                                    </div>
+                                    <div class="col-2 py-3">
+                                        <a href="javascript:void(0)" (click)="orderDetails(id)">Detalji</a>
+                                        <a *ngIf="porudzbina.status == 'Procesuiranje'" class="ml-4" href="javascript:void(0)" (click)="posaljiPorudzbinu(porudzbina.id)">Pošalji</a>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+<!-- ############ PANEL 2 - PONUDE MUSTERIJA ############## -->
+                <div *ngIf="nav == 2">
+                    <!-- Ponudjene knjige -->
+                    <div class="my-5 mr-5">
+                        <h2 class="mb-3">Ponude korisnika</h2>
+                        <hr>
+                        <div class="card" style="border-radius: 0px;">
+                            <div class="card-header">
+                                <div class="row">
+                                    <div class="col-1">
+                                        <p style="font-weight: 500;" class="m-0">ID</p>
+                                    </div>
+                                    <div class="col-4">
+                                        <p style="font-weight: 500;" class="m-0">Naziv knjige</p>
+                                    </div>
+                                    <div class="col-2">
+                                        <p style="font-weight: 500;" class="m-0">Ponuđena cena</p>
+                                    </div>
+                                    <div class="col-2">
+                                        <p style="font-weight: 500;" class="m-0">Stanje</p>
+                                    </div>
+                                    <div class="col-2">
+                                        <p style="font-weight: 500;" class="m-0">Status</p>
+                                    </div>
+                                    <div class="col-1">
+                                        <p style="font-weight: 500;" class="m-0">Akcije</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- body -->
+                            <div class="card-body py-0">
+                                <div *ngFor="let ponuda of offers; index as id">
+                                <div class="row">
+                                    <div class="col-1 border-right border-bottom py-3">
+                                        <p class="m-0 text-center">{{ponuda.id}}</p>
+                                    </div>
+                                    <div class="col-4 border-right border-bottom py-3">
+                                        <p class="m-0">{{ponuda.naziv}} - {{ponuda.autor}}</p>
+                                    </div>
+                                    <div class="col-2 border-right border-bottom py-3">
+                                        <p class="m-0">{{ponuda.cena}}.00 RSD</p>
+                                    </div>
+                                    <div class="col-2 border-right border-bottom py-3">
+                                        <span style="font-weight: 500;">{{ponuda.stanje}}/10</span>
+                                    </div>
+                                    <div class="col-2 border-right border-bottom py-3">
+                                        <span style="font-weight: 500;">{{ponuda.statusPonude}}</span>
+                                    </div>
+                                    <div class="col-1 py-3 border-bottom">
+                                        <a href="javascript:void(0)" (click)="offerDetails(id)">Detalji</a>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+<!-- ############ PANEL 3 - DETALJI (HIDDEN) ############## -->
+                <div *ngIf="nav == 3">
+                    <!-- detalji knjige -->
+                    <div class="my-5 mr-5">
+                        <h2 class="mb-3">Detalji knjige</h2>
+                        <hr>
+                        <button class="btn btn-dark" style="border-radius: 0;" (click)="navigate(0)"> < Nazad</button>
+                        <div class="row" style="padding-top: 20px; padding-bottom: 80px;">
+                            <!-- slika knjige -->
+                            <div class="col-4" style="display: flex; justify-content: center;">
+                                <img src="{{book.slika}}" alt="" style="height: 584px; width: 382px;">
+                            </div>
+                    
+                            <!-- podaci o knjizi -->
+                            <div class="col-8">
+                                <h2 style="font-weight: 400;">{{book.ime}} - {{book.autor}}</h2>
+                                <h4 class="mt-3">{{book.cena}}.00 RSD</h4>
+                    
+                                <!-- dodatni podaci -->
+                                <p class="mt-5">
+                                <span style="font-weight: 600;">Izdavač: </span><span style="font-size: 17px;">{{book.izdavac}}</span><br>
+                                <span style="font-weight: 600;">Broj strana: </span><span style="font-size: 17px;">{{book.brStrana}}</span><br>
+                                <span style="font-weight: 600;">Pismo: </span><span style="font-size: 17px;">{{book.pismo}}</span><br>
+                                <span style="font-weight: 600;">Povez: </span><span style="font-size: 17px;">{{book.povez}}</span><br>
+                                <span style="font-weight: 600;">Format: </span><span style="font-size: 17px;">{{book.format}} cm</span><br>
+                                <span style="font-weight: 600;">Godina izdanja: </span><span style="font-size: 17px;">{{book.gIzdanja}}</span><br>
+                                <span style="font-weight: 600;">Kategorija: </span><span style="font-size: 17px;">{{book.kategorija}}</span><br>
+                                </p>
+                    
+                                <!-- ostalo -->
+                                <hr>
+                                <h5 >Opis</h5>
+                                <p class="mb-5">{{book.opis}}</p>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+<!-- ############ PANEL 4 - PORUDZBINA DETALJI (HIDDEN) ############## -->
+                <div *ngIf="nav == 4">
+                    <div class="my-5 mr-5">
+                        <h2 class="mb-3">Detalji porudzbine</h2>
+                        <hr>
+                        <button class="btn btn-dark" style="border-radius: 0;" (click)="navigate(1)"> < Nazad</button>
+
+                        <!-- row gde se nalaze detalji i adresa za isporuku -->
+                        <div class="row" style="padding-top: 20px;">
+                            <div class="col-7">
+                                <div class="card" style="border-radius: 0;">
+                                    <div class="card-header">
+                                        <div class="row">
+                                            <div class="col-7">
+                                                <p style="font-weight: 500;" class="m-0">Proizvod</p>
+                                            </div>
+                                            <div class="col-5">
+                                                <p style="font-weight: 500;" class="m-0">Ukupno</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <!-- knjige koje je porucio -->
+                                        <div *ngFor="let nzm of por.korpa" class="row">
+                                            <div class="col-7">
+                                                <p class="text-secondary" style="font-size: 14px;">{{nzm.ime}} - {{nzm.autor}} <span class="font-weight-bold">x {{nzm.kvantitet}}</span></p>
+                                            </div>
+                                            <div class="col-5">
+                                                <p style="font-weight: 500;" class="m-0">{{nzm.cena * nzm.kvantitet}}.00 RSD</p>
+                                            </div>
+                                            <div class="col-12"><hr class="w-100 mt-0"></div>
+                                        </div>
+                                        <!-- ukupna vrednost proizvoda -->
+                                        <div class="row">
+                                            <div class="col-7">
+                                                <h6>Ukupna vrednost proizvoda</h6>
+                                            </div>
+                                            <div class="col-5">
+                                                <p style="font-weight: 500;" class="m-0">{{detailSum}}.00 RSD</p>
+                                            </div>
+                                            <div class="col-12"><hr class="w-100 mt-2"></div>
+                                        </div>
+                                        <!-- cena dostave -->
+                                        <div class="row">
+                                            <div class="col-7">
+                                                <h6>Dostava</h6>
+                                            </div>
+                                            <div class="col-5">
+                                                <p style="font-weight: 500;" class="m-0">270.00 RSD</p>
+                                            </div>
+                                            <div class="col-12"><hr class="w-100 mt-2"></div>
+                                        </div>
+                                        <!-- sve ukupno -->
+                                        <div class="row">
+                                            <div class="col-7">
+                                                <h6>Ukupno</h6>
+                                            </div>
+                                            <div class="col-5">
+                                                <p style="font-weight: 500;" class="m-0">{{detailSum + 270}}.00 RSD</p>
+                                            </div>
+                                            <div class="col-12"><hr class="w-100 mt-2"></div>
+                                        </div>
+                                        <!-- sve ukupno -->
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <p style="font-weight: 500;" class="m-0">Napomena: <span style="font-weight: 350">{{por.napomena}}</span></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="card" style="border-radius: 0;">
+                                    <div class="card-header">
+                                        <h5>Adresa isporuke i naplate</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <p class="m-0 mb-1">{{por.ime}} {{por.prezime}}</p>
+                                        <p class="m-0 mb-1">{{por.ulica}}</p>
+                                        <p class="m-0 mb-1">{{por.zip}}, {{por.grad}}</p>
+                                        <p class="m-0 mb-1"><img src="../../../assets/ico/telefon.png" alt="" style="display: inline;"> {{por.tel}}</p>
+                                        <p class="m-0 mb-1"><img src="../../../assets/ico/email.png" alt="" style="display: inline;"> {{por.email}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+<!-- ############ PANEL 5 - PONUDA DETALJI (HIDDEN) ############## -->
+                <div *ngIf="nav == 5">
+                    <div class="my-5 mr-5">
+                        <h2 class="mb-3">Detalji porudzbine</h2>
+                        <hr>
+                        <button class="btn btn-dark" style="border-radius: 0;" (click)="navigate(2)"> < Nazad</button>
+                        <div class="row" style="padding-top: 20px;">
+                            <div class="col-4">
+                                <div class="mb-5" style="border: 2px solid rgb(230, 230, 230); background-color: #bfbfbf; height: fit-content;">
+                                    <div class="row mx-3">
+                                        <div class="col-12 text-secondary">
+                                            <h5 class="mt-5 mb-3 text-center">{{sOffer.autor}}</h5>
+                                        </div>
+                                        <div class="col-12 text-secondary mb-4">
+                                            <h3 class="mt-5 mb-3 text-center">{{sOffer.naziv}}</h3>
+                                        </div>
+                                        <div class="col-12 text-secondary mb-5">
+                                            <h5 class="mb-3 text-center" style="margin-top: 160px;">{{sOffer.izdavac}}</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <u><h5>Podaci knjige</h5></u><br>
+                                <div class="row ml-1">
+                                    <p>
+                                        <span style="font-weight: 600;">Broj strana: </span><span style="font-size: 17px;">{{sOffer.brStrana}}</span><br>
+                                        <span style="font-weight: 600;">Pismo: </span><span style="font-size: 17px;">{{sOffer.pismo}}</span><br>
+                                        <span style="font-weight: 600;">Povez: </span><span style="font-size: 17px;">{{sOffer.povez}}</span><br>
+                                        <span style="font-weight: 600;">Format: </span><span style="font-size: 17px;">{{sOffer.format}} cm</span><br>
+                                        <span style="font-weight: 600;">Godina izdanja: </span><span style="font-size: 17px;">{{sOffer.gIzdanja}}</span><br>
+                                    </p>
+                                </div>
+                                <div class="row ml-1">
+                                    <div class="card mt-4" style="border-radius: 0;">
+                                        <div class="card-header">
+                                            <h5>Podaci davaoca ponude</h5>
+                                        </div>
+                                        <div class="card-body">
+                                            <p class="m-0 mb-1">{{sOffer.ime}} {{sOffer.prezime}}</p>
+                                            <p class="m-0 mb-1">{{sOffer.ulica}}</p>
+                                            <p class="m-0 mb-1">{{sOffer.zip}}, {{sOffer.grad}}</p>
+                                            <p class="m-0 mb-1"><img src="../../../assets/ico/telefon.png" alt="" style="display: inline;"> {{sOffer.tel}}</p>
+                                            <p class="m-0 mb-1"><img src="../../../assets/ico/email.png" alt="" style="display: inline;"> {{sOffer.email}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="mb-5" style="border: 2px solid rgb(230, 230, 230); height: fit-content;">
+                                    <div class="row mx-3">
+                                        <div class="col-12">
+                                            <h4 class="mt-5 mb-3 text-center">Odgovori na ponudu</h4>
+                                        </div>
+                                        <div class="col-12 mb-4">
+                                            <h5 class="mt-5 mb-3 text-center"> <span class="text-secondary">Zahtevana cena:</span> {{sOffer.cena}}.00 RSD</h5>
+                                        </div>
+                                        <div class="col-12 text-secondary mb-5">
+                                            <div *ngIf="offers[spID].statusPonude == 'na čekanju'">
+                                                <button id="dugme" class="btn btn-outline-dark mt-4 mb-2" style="width: 100%; margin: 0;" (click)="changeStatus(sID, 'Prihvaćena')">Prihvati ponudu</button>
+                                                <button id="dugmex" class="btn btn-outline-dark mb-2" style="width: 100%; margin: 0;" (click)="changeStatus(sID, 'Odbijena')">Odbij</button>
+                                            </div>
+                                            <div *ngIf="offers[spID].statusPonude == 'Prihvaćena'">
+                                                <div style="background-color: green;">
+                                                <h6 class="text-center" style="color: white; padding: 10px">Ponuda prihvaćena</h6>
+                                                </div>
+                                            </div>
+                                            <div *ngIf="offers[spID].statusPonude == 'Odbijena'">
+                                                <div style="background-color: red;">
+                                                    <h6 class="text-center" style="color: white; padding: 10px">Ponuda odbijena</h6>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

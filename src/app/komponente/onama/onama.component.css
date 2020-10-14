@@ -1,0 +1,30 @@
+@media (min-width: 992px){
+    #onh{
+        padding-top: 140px;
+        padding-bottom: 170px;
+    }
+}
+
+@media (max-width: 992px){
+    #onh{
+        padding-top: 50px;
+        padding-bottom: 50px;
+    }
+}
+
+@media (max-width: 768px){
+    #onh{
+        padding-top: 50px;
+        padding-bottom: 50px;
+    }
+}
+
+@media (max-width: 576px){
+    #onh{
+        padding-top: 35px;
+        padding-bottom: 35px;
+    }
+    #onh h1{
+        font-size: xx-large;
+    }
+}

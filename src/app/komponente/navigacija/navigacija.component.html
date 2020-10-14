@@ -1,0 +1,240 @@
+<div style="background-color: rgba(0, 0, 0, 0.17);">
+<nav
+  class="navbar navbar-expand-md"
+  [ngClass]="{'navTransparent navbar-dark': transparent, 'navWhite navbar-light': !transparent}"
+>
+<div class="container-fluid" id="navdiv">
+  <!-- Logo i naziv stranice -->
+  <a routerLink='' (click)="navTrans(true)" class="navbar-brand" id="logo">
+    <div *ngIf="transparent; else elseBlock"><img src="../../../assets/img/logo.png" alt="Knjizara Online" style="height: 1.7em;"/></div>
+    <ng-template #elseBlock><img src="../../../assets/img/logoBlk.png" alt="Knjizara Online" style="height: 1.7em;"/></ng-template>
+  </a>
+  <a routerLink='' (click)="navTrans(true)"><h3 class="navbar-text">Knjižara Online</h3></a>
+
+  <!-- NavbarToggler -->
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#navResponzivno"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <!-- Elementi NavbarToggler-a -->
+  <div class="collapse navbar-collapse" id="navResponzivno">
+    <ul class="navbar-nav ml-auto ">
+
+      <!-- nav element -->
+      <li class="nav-item font-weight-bold">
+        <a routerLink="/prodaj-knjigu" (click)="navTrans(false)" href="" class="nav-link">PRODAJ KNJIGU</a>
+      </li>
+
+      <!-- nav element -->
+      <li class="nav-item font-weight-bold dropdown">
+        <a
+          class="nav-link"
+          type="button"
+          id="dropdownMenuButton"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+        >
+          KATEGORIJE
+        </a>
+        <div
+          class="dropdown-menu multi-column columns-2 dropdown-menu-right"
+          aria-labelledby="dropdownMenuButton"
+        >
+          <div class="row justify-content-md-center">
+            <div class="col-sm-6 border-right">
+              <ul class="multi-column-dropdown">
+                <li><a (click)="navTrans(false)" [routerLink]="['/pl']" [queryParams]="{ kategorija: 'Klasici' }" queryParamsHandling="merge" class="dropdown-item">Klasici</a></li>
+                <li><a (click)="navTrans(false)" [routerLink]="['/pl']" [queryParams]="{ kategorija: 'Drama' }" queryParamsHandling="merge" class="dropdown-item">Drama</a></li>
+                <li><a (click)="navTrans(false)" [routerLink]="['/pl']" [queryParams]="{ kategorija: 'Poezija' }" queryParamsHandling="merge" class="dropdown-item">Poezija</a></li>
+              </ul>
+            </div>
+            <div class="col-sm-6">
+              <ul class="multi-column-dropdown">
+                <li><a (click)="navTrans(false)" [routerLink]="['/pl']" [queryParams]="{ kategorija: 'Lektire' }" queryParamsHandling="merge" class="dropdown-item">Lektire</a></li>
+                <li><a (click)="navTrans(false)" [routerLink]="['/pl']" [queryParams]="{ kategorija: 'Strane knjige' }" queryParamsHandling="merge" class="dropdown-item">Strane knjige</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </li>
+
+      <!-- nav element -->
+      <li class="nav-item font-weight-bold">
+        <a *ngIf="loginbtn" (click)="navTrans(true)" routerLink="/profile" class="nav-link">MOJ NALOG</a>
+      </li>
+
+      <li class="nav-item font-weight-bold">
+        <a *ngIf="logoutbtn" (click)="navTrans(true)" routerLink="/profile" class="nav-link">{{username}}</a>
+      </li>
+      <li class="nav-item font-weight-bold">
+        <a href="" *ngIf="logoutbtn" (click)="logout()" class="nav-link">log out</a>
+      </li>
+
+      <!-- nav element -->
+      <li class="nav-item font-weight-bold">
+        <a (click)="navTrans(true)" routerLink='/o-nama' href="" class="nav-link">O NAMA</a>
+      </li>
+
+      <!-- nav element -->
+      <li class="nav-item font-weight-bold">
+        <a routerLink="/kontakt" (click)="navTrans(true)" href="" class="nav-link">KONTAKT</a>
+      </li>
+
+      <!-- nav element -->
+      <li class="nav-item font-weight-bold">
+        <a routerLink="/pl" (click)="navTrans(false)" class="nav-link">PRODAVNICA</a>
+      </li>
+
+      <!-- nav element ###CART### -->
+      
+      <li *ngIf="transparent" class="nav-item font-weight-bold dropdown">
+        <a
+          class="nav-link"
+          type="button"
+          id="dropdownMenuButton"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+          (click)="fillCart(); test()"
+        >
+          <img src="../../../assets/ico/cartblack.png" alt=""/>
+        </a>
+          <!-- div u kome smestam content dropdowna -->
+          <div
+          class="dropdown-menu dropdown-menu-right"
+          aria-labelledby="dropdownMenuButton" style="width: 300px !important; max-height: 330px !important; overflow-y: auto; border-radius: 0; border: 1.5px solid lightgrey;">
+
+            <div *ngIf="cartKnjige.length != 0">
+            <div *ngFor="let knjiga of cartKnjige; index as id">
+            <div class="row m-2 mr-0">
+              <!-- slika -->
+              <div class="col-3 align-self-center">
+                <img src="{{knjiga.slika}}" alt="" style="height: 60px; width: 60px;">
+              </div>
+
+              <!-- ime i cena -->
+              <div class="col-7 cart">
+                <a href="#" [routerLink]="['/product', cartKnjige[id].id]" (click)="navTrans(false)">{{knjiga.ime}} - {{knjiga.autor}}</a> <br>
+                <span> {{knjiga.kvantitet}} x {{knjiga.cena}}.00 RSD</span>
+              </div>
+
+              <!-- x dugme -->
+              <div class="col-1 cart">
+                <button class="btn" style="width: 27px; height: 27px; border-radius: 50%; text-align:center; vertical-align:middle; padding: 0; border: 1px solid gray;" (click)="removeFromCart(id)">X</button>
+              </div>
+              
+            </div>
+
+            <hr class="my-0" style="margin-left: 22px; margin-right: 12px;"> 
+            </div>
+
+            <div class="row m-2 mr-0">
+              <div class="col">
+                <p class="text-center m-0">Ukupna cena: {{cartSum}}.00 RSD</p>
+              </div>
+            </div>
+
+            <hr class="my-0 mb-3" style="margin-left: 22px; margin-right: 12px;"> 
+
+            <div class="row mb-2 ml-2 mt-2 mr-0">
+              <div class="col my-0">
+                <button routerLink="/cart" (click)="navTrans(false)" id="dugme" class="btn btn-secondary btn-lg" style="border-radius: 0; width: 100%;">Vidi korpu</button>
+              </div>
+            </div>
+
+            <div class="row mb-2 ml-2 mt-2 mr-0">
+              <div class="col">
+                <button routerLink="/checkout" (click)="navTrans(false)" id="dugmeinv" class="btn btn-secondary btn-lg" style="border-radius: 0; width: 100%;">Plaćanje</button>
+              </div>
+            </div>
+          </div>
+              <div *ngIf="cartKnjige.length == 0" class="row m-2 mr-0">
+                <div class="col">
+                  <p class="text-center m-0">Korpa je prazna</p>
+                </div>
+              </div>
+
+          </div>
+      </li>
+
+      <li *ngIf="!transparent" class="nav-item font-weight-bold dropdown">
+        <a
+          class="nav-link"
+          type="button"
+          id="dropdownMenuButton"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+          (click)="fillCart(); test()"
+        >
+          <img src="../../../assets/ico/cartwhite.png" alt=""/>
+        </a>
+          <!-- div u kome smestam content dropdowna -->
+          <div
+          class="dropdown-menu dropdown-menu-right"
+          aria-labelledby="dropdownMenuButton" style="width: 300px !important; max-height: 330px !important; overflow-y: auto; border-radius: 0; border: 1.5px solid lightgrey;">
+
+            <div *ngIf="cartKnjige.length != 0">
+            <div *ngFor="let knjiga of cartKnjige; index as id">
+            <div class="row m-2 mr-0">
+              <!-- slika -->
+              <div class="col-3 align-self-center">
+                <img src="{{knjiga.slika}}" alt="" style="height: 60px; width: 60px;">
+              </div>
+
+              <!-- ime i cena -->
+              <div class="col-7 cart">
+                <a href="#" [routerLink]="['/product', cartKnjige[id].id]" (click)="navTrans(false)">{{knjiga.ime}} - {{knjiga.autor}}</a> <br>
+                <span> {{knjiga.kvantitet}} x {{knjiga.cena}}.00 RSD</span>
+              </div>
+
+              <!-- x dugme -->
+              <div class="col-1 cart">
+                <button class="btn" style="width: 27px; height: 27px; border-radius: 50%; text-align:center; vertical-align:middle; padding: 0; border: 1px solid gray;" (click)="removeFromCart(id)">X</button>
+              </div>
+              
+            </div>
+
+            <hr class="my-0" style="margin-left: 22px; margin-right: 12px;"> 
+            </div>
+
+            <div class="row m-2 mr-0">
+              <div class="col">
+                <p class="text-center m-0">Ukupna cena: {{cartSum}}.00 RSD</p>
+              </div>
+            </div>
+
+            <hr class="my-0 mb-3" style="margin-left: 22px; margin-right: 12px;"> 
+
+            <div class="row mb-2 ml-2 mt-2 mr-0">
+              <div class="col my-0">
+                <button routerLink="/cart" (click)="navTrans(false)" id="dugme" class="btn btn-secondary btn-lg" style="border-radius: 0; width: 100%;">Vidi korpu</button>
+              </div>
+            </div>
+
+            <div class="row mb-2 ml-2 mt-2 mr-0">
+              <div class="col">
+                <button routerLink="/checkout" (click)="navTrans(false)" id="dugmeinv" class="btn btn-secondary btn-lg" style="border-radius: 0; width: 100%;">Plaćanje</button>
+              </div>
+            </div>
+          </div>
+              <div *ngIf="cartKnjige.length == 0" class="row m-2 mr-0">
+                <div class="col">
+                  <p class="text-center m-0">Korpa je prazna</p>
+                </div>
+              </div>
+
+          </div>
+      </li>
+
+    </ul>
+  </div>
+</div>
+</nav>
+</div>

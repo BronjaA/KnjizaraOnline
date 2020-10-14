@@ -1,0 +1,51 @@
+.sl{
+    color: rgb(158, 163, 168);
+}
+
+#dk
+{
+    text-decoration: none;
+    color: rgb(52, 58, 64);
+}
+
+#dk:hover
+{
+    text-decoration: none;
+}
+
+.fp{
+    margin-bottom: 15px;
+    box-shadow: none;
+    border: 1px solid rgb(198, 198, 198);
+    height: 2.2em;
+    padding-left: 10px;
+}
+
+.lbl{
+    font-size: 14px;
+}
+
+#dugme{
+    border-width: 0;
+    width: 6em;
+    border-radius: 0px; 
+    height: 2.5em; 
+    margin-top: -5px; 
+    background-color: #7dffa0;
+}
+
+#dugme:hover{
+    background-color: #47bf67;
+}
+
+#dugmex{
+    border-width: 0;
+    width: 6em;
+    border-radius: 0px; 
+    height: 2.5em; 
+    background-color: rgb(234, 234, 234);
+}
+
+#dugmex:hover{
+    background-color: rgb(52, 58, 64);
+}

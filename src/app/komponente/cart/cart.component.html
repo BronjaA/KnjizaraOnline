@@ -1,0 +1,129 @@
+<div class="fluid pb-5" style="background-color: rgb(249, 249, 249);">
+    <hr class="w-100 m-0">
+    <h1 class="text-center display-4 mt-5 mb-5" style="font-weight: 500; color: rgb(84, 89, 95);">Korpa</h1>
+
+    <div class="m-5">
+        <div class="card mx-5" style="border-radius: 0px;">
+            <div class="card-header">
+                <div class="row">
+                    <div class="col-1">
+                    </div>
+                    <div class="col-1">
+                    </div>
+                    <div class="col-5">
+                        <p style="font-weight: 500;" class="m-0">Proizvod</p>
+                    </div>
+                    <div class="col-2">
+                        <p style="font-weight: 500;" class="m-0">Cena</p>
+                    </div>
+                    <div class="col-1">
+                        <p style="font-weight: 500;" class="m-0">Količina</p>
+                    </div>
+                    <div class="col-2">
+                        <p style="font-weight: 500;" class="m-0">Ukupno</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- body -->
+            <div class="card-body py-0">
+
+                <!-- tabela koja prikazuje sve produkte u korpi -->
+                <div *ngFor="let knjiga of cartKnjige; index as id">
+                <div class="row">
+                    <div class="col-1 align-self-center d-flex justify-content-center py-3">
+                        <button (click)="removeFromCart(id)" class="btn" style="width: 27px; height: 27px; border-radius: 50%; text-align:center; vertical-align:middle; padding: 0; border: 1px solid lightgray; color: gray;">X</button> 
+                    </div>
+                    <div class="col-1 py-3 align-self-center">
+                        <img class="p-0" src="{{knjiga.slika}}" alt="" style="width: 70px; height: 70px;">
+                    </div>
+                    <div class="col-5 py-3 align-self-center">
+                        <p class="m-0 font-weight-bold">{{knjiga.ime}} - {{knjiga.autor}}</p>
+                    </div>
+                    <div class="col-2 align-self-center py-3">
+                        <p class="m-0 font-weight-bold">{{knjiga.cena}}.00 RSD</p>
+                    </div>
+                    <div class="col-1 align-self-center py-3">
+                        <span class="font-weight-bold" style="font-weight: 500;">{{knjiga.kvantitet}}</span>
+                    </div>
+                    <div class="col-2 py-3 align-self-center">
+                        <p class="m-0 font-weight-bold">{{knjiga.cena*knjiga.kvantitet}}.00 RSD</p>
+                    </div>
+                </div>
+                <hr class="m-0 p-0 w-100">
+                </div>
+
+                <!-- vrsta koja pokazuje ukupno stanje -->
+                <div *ngIf="cartKnjige.length != 0">
+                    <div class="row">
+                        <div class="col-1 py-3 align-self-center">
+                            <p class="m-0 font-weight-bold">Ukupno:</p>
+                        </div>
+                        <div class="col-8"></div>
+                        <div class="col-1 py-3 align-self-center">
+                            <p class="m-0 font-weight-bold">{{cartItems}}</p>
+                        </div>
+                        <div class="col-2 py-3 align-self-center">
+                            <p class="m-0 font-weight-bold">{{cartSum}}.00 RSD</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sveukupno prozorcic -->
+        <div class="row">
+            <div class="col-6"></div>
+            <div class="col-6">
+                <div class="card my-4 mr-5" style="border-radius: 0;">
+                    <div class="card-header">
+                        <h5 class="m-0">Sveukupno</h5>
+                    </div>
+                    <div class="card-body">
+                        <!-- vrsta -->
+                        <div class="row mx-1">
+                            <div class="col-5">
+                                <h6 class="m-0 p-0">Proizvod</h6>
+                            </div>
+                            <div class="col-6">
+                                <h6 class="m-0 p-0">{{cartSum}}.00 RSD</h6>
+                            </div>
+                            <div class="col-12"><hr class="w-100"></div>
+                        </div>
+
+                        <!-- vrsta -->
+                        <div class="row mx-1">
+                            <div class="col-5">
+                                <h6 class="m-0 p-0">Dostava</h6>
+                            </div>
+                            <div class="col-6 ml-3">
+                                <div class="row"><h6 class="m-0 p-0">{{cenaDostave}}.00 RSD</h6></div>
+                                <div class="row"><span>Opcije i cene dostave mogu varirati u zavisnosti od vrste porudzbine</span></div>
+                                <div class="row mt-4"><span>Proveri cene dostave</span></div>
+                            </div>
+                            <div class="col-12"><hr class="w-100"></div>
+                        </div>
+
+                        <!-- vrsta -->
+                        <div class="row mx-1">
+                            <div class="col-5">
+                                <h6 class="m-0 p-0">Ukupno</h6>
+                            </div>
+                            <div class="col-6">
+                                <h6 class="m-0 p-0">{{cartSum + cenaDostave}}.00 RSD</h6>
+                            </div>
+                            <div class="col-12"><hr class="w-100"></div>
+                        </div>
+
+                        <!-- dugme kreni na placanje -->
+                        <div class="row mx-1 mt-0 pt-0">
+                            <div class="col-12 d-flex justify-content-center">
+                                <button id="dugme" routerLink="/checkout" class="btn btn-outline-dark mt-2 mb-2" type="submit" style="width: 100%;">Kreni na plaćanje</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,30 @@
+@media (min-width: 992px){
+    #mnh{
+        padding-top: 100px;
+        padding-bottom: 100px;
+    }
+}
+
+@media (max-width: 992px){
+    #mnh{
+        padding-top: 50px;
+        padding-bottom: 50px;
+    }
+}
+
+@media (max-width: 768px){
+    #mnh{
+        padding-top: 50px;
+        padding-bottom: 50px;
+    }
+}
+
+@media (max-width: 576px){
+    #mnh{
+        padding-top: 35px;
+        padding-bottom: 35px;
+    }
+    #mnh h1{
+        font-size: xx-large;
+    }
+}

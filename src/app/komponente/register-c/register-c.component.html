@@ -1,0 +1,18 @@
+<div class="box">
+    <form [formGroup]="angForm" (ngSubmit)="postdata(angForm)" autocomplete="off">
+        <!-- korisnicko ime -->
+        <label for="username">Korisničko ime</label><span style="color: red;"> *</span><br>
+        <input class="fp w-100" type="text" name="username" formControlName="username" autocomplete="off" ><br>
+
+        <!-- email adresa -->
+        <label for="email">E-Mail adresa</label><span style="color: red;"> *</span><br>
+        <input class="fp w-100" type="email" name="email" formControlName="email" autocomplete="off"><br>
+
+        <!-- sifra -->
+        <label for="password">Šifra</label><span style="color: red;"> *</span><br>
+        <input class="fp w-100" type="password" name="password" formControlName="password" autocomplete="off"><br>
+
+        <!-- button registruj se -->
+        <button class="btn btn-secondary" type="submit" [disabled]="!angForm.valid" style="border-radius: 0px; margin-bottom: 30px; margin-top: 5px;">Registruj se</button><br>
+    </form>
+</div>

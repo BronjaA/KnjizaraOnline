@@ -1,0 +1,157 @@
+<div class="fluid" style="background-color: rgb(249, 249, 249);">
+    <hr class="w-100 m-0">
+    <h1 class="text-center display-4 mt-5 mb-5" style="font-weight: 500; color: rgb(84, 89, 95);">Checkout</h1>
+
+    <!-- row gde se nalaze podaci o kupcu levo i desno podaci kupovine i dugme za potvrdu kupovine -->
+    <div class="container-fluid">
+
+    <!-- pocinje forma -->
+    <div class="row pt-5">
+        <div class="col-6 offset-1 pr-5">
+            <!-- header -->
+            <h5 class="ml-5 mt-5">Podaci za placanje</h5>
+            <hr class="ml-5">
+
+            <!-- forma -->
+            <form class="ml-5" id="order" [formGroup]="angForm" (ngSubmit)="postdata(angForm)" autocomplete="off">
+                <div class="row">
+                    <div class="col-6">
+                        <!-- polje -->
+                        <label class="lbl" for="" style="font-weight: 500;">Ime</label> <br>
+                        <input class="fp" type="text" style="width: 95%;" name="ime" formControlName="ime" autocomplete="off">
+                    </div>
+                    <div class="col-6">
+                        <!-- polje -->
+                        <label class="lbl" for="" style="font-weight: 500;">Prezime</label> <br>
+                        <input class="fp" type="text" style="width: 100%;" name="prezime" formControlName="prezime" autocomplete="off">
+                    </div>
+                </div>
+
+                <!-- polje -->
+                <div>
+                    <label class="lbl" for="" style="font-weight: 500;">Naziv firme (neobavezno)</label> <br>
+                    <input class="fp" type="text" style="width: 100%;">
+                </div>
+
+                <!-- polje -->
+                <div>
+                    <label class="lbl" for="" style="font-weight: 500;">Drzava/Regija</label> <br>
+                </div>
+
+                <!-- polje -->
+                <div>
+                    <label class="lbl" for="" style="font-weight: 500;">Ulica</label> <br>
+                    <input class="fp" type="text" style="width: 100%;" placeholder="Ulica i kućni broj" name="ulica" formControlName="ulica" autocomplete="off">
+                    <input class="fp" type="text" style="width: 100%;" placeholder="Stan, apartman, sprat itd. (nije obavezno)">
+                </div>
+
+                <!-- polje -->
+                <div>
+                    <label class="lbl" for="" style="font-weight: 500;">Grad</label> <br>
+                    <input class="fp" type="text" style="width: 100%;" name="grad" formControlName="grad" autocomplete="off">
+                </div>
+
+                <!-- polje -->
+                <div>
+                    <label class="lbl" for="" style="font-weight: 500;">Poštanski broj</label> <br>
+                    <input class="fp" type="number" style="width: 100%;" name="zip" formControlName="zip" autocomplete="off">
+                </div>
+
+                <!-- polje -->
+                <div>
+                    <label class="lbl" for="" style="font-weight: 500;">Telefon</label> <br>
+                    <input class="fp" type="text" style="width: 100%;" name="tel" formControlName="tel" autocomplete="off">
+                </div>
+
+                <!-- polje -->
+                <div>
+                    <label class="lbl" for="" style="font-weight: 500;">E-mail adresa</label> <br>
+                    <input class="fp" type="email" style="width: 100%;" name="email" formControlName="email" autocomplete="off">
+                </div>
+
+                <!-- polje -->
+                <div>
+                    <label class="lbl" for="" style="font-weight: 500;">Napomena uz porudžbinu (neobavezno)</label> <br>
+                    <textarea class="mb-5" type="text" style="width: 100%; box-shadow: none; border: 1px solid rgb(218, 218, 218);" cols="30" rows="10" name="napomena" formControlName="napomena" autocomplete="off"></textarea>
+                </div>
+            </form>
+        </div>
+        <!-- panel sa detaljima porudzbine kao i dugme za potvrdu -->
+        <div class="col-4">
+            <div style="border: 2px solid rgb(230, 230, 230); height: fit-content;">
+                <h5 class="mt-4 ml-4">Vaša narudžbina</h5>
+                <!-- vrsta -->
+                <div class="row mt-5 mx-3">
+                    <div class="col-8">
+                        <h6>Proizvod</h6>
+                    </div>
+                    <div class="col-4">
+                        <h6>Ukupno</h6>
+                    </div>
+                    <div class="col-12"><hr class="w-100"></div>
+                </div>
+    
+                <!-- vrsta -->
+                <div *ngFor="let knjiga of cartKnjige; index as id">
+                <div class="row mx-3">
+                    <div class="col-8">
+                        <p class="text-secondary" style="font-size: 14px;">{{knjiga.ime}} - {{knjiga.autor}} <span class="font-weight-bold">x {{knjiga.kvantitet}}</span></p>
+                    </div>
+                    <div class="col-4">
+                        <h6>{{knjiga.cena*knjiga.kvantitet}}.00 RSD</h6>
+                    </div>
+                    <div class="col-12"><hr class="w-100 mt-0"></div>
+                </div>
+                </div>
+
+                <!-- vrsta -->
+                <div class="row mx-3">
+                    <div class="col-8">
+                        <h6>Ukupna vrednost proizvoda</h6>
+                    </div>
+                    <div class="col-4">
+                        <h6>{{cartSum}}.00 RSD</h6>
+                    </div>
+                    <div class="col-12"><hr class="w-100 mt-2"></div>
+                </div>
+
+                <!-- vrsta -->
+                <div class="row mx-3">
+                    <div class="col-8">
+                        <h6>Dostava</h6>
+                    </div>
+                    <div class="col-4">
+                        <h6>{{cenaDostave}}.00 RSD</h6>
+                    </div>
+                    <div class="col-12"><hr class="w-100 mt-2"></div>
+                </div>
+
+                <!-- vrsta -->
+                <div class="row mx-3">
+                    <div class="col-8">
+                        <h6>Ukupno</h6>
+                    </div>
+                    <div class="col-4">
+                        <h6>{{cartSum + cenaDostave}}.00 RSD</h6>
+                    </div>
+                    <div class="col-12"><hr class="w-100 mt-2"></div>
+                </div>
+
+                <div class="row mx-3">
+                    <div class="col-12 text-secondary">
+                        Your personal data will be used to process your order, support your experience throughout this website, and for other purposes described in our pravila o privatnosti.
+                    </div>
+                </div>
+
+                <div class="row mx-3">
+                    <div *ngIf="userID != null" class="col-12 d-flex justify-content-center">
+                        <button id="dugme" class="btn btn-outline-dark mt-4 mb-5" type="submit" style="width: 100%;" form="order" [disabled]="!angForm.valid">Naručite</button>
+                    </div>
+                    <div *ngIf="userID == null" class="col-12 d-flex justify-content-center">
+                        <div id="dugme" class="btn btn-outline-dark mt-4 mb-5" style="width: 100%;">Niste prijavljeni. Molimo Vas prijavite se!</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
